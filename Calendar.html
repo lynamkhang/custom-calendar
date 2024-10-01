@@ -1,8 +1,10 @@
 <head>
-    <link rel="stylesheet" href="/myProject/myApp/static/calendar.css">
+    <link rel="stylesheet" href="calendar.css">
+    <script src="calendar.js"></script>
 </head>
 
 <body>
+    <input>
     <div class="container">
         <div class="calendar">
             <div class="header">
@@ -12,8 +14,8 @@
                 </button>
 
                 <div class="year-month">
-                    <div class="year">2023年</div>
-                    <div class="month">1月</div>
+                    <div class="year"></div>
+                    <div class="month"></div>
                 </div>
                 
                 <button id="btnNext">
@@ -25,13 +27,13 @@
 
         <div class="calendar-body">
             <div class="weekdays">
-                <div class="day">日</div>
+                <div class="day" id="sunday">日</div>
                 <div class="day">月</div>
                 <div class="day">火</div>
                 <div class="day">水</div>
                 <div class="day">木</div>
                 <div class="day">金</div>
-                <div class="day">土</div>
+                <div class="day" id="saturday">土</div>
             </div>
 
             <div class="days"></div>
