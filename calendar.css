@@ -2,11 +2,25 @@
     font-size: 14px;
 }
 
-.container {
+.date-input {
     display: flex;
+    background-color: white;
+    border: 1px solid rgb(210, 212, 212);
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    position: relative;
+    min-height: 30px;
+    max-width: 196px;
+    cursor: pointer;
+}
+
+.container {
+    display: none;
     max-width: 280px;
     min-height: 100px;
     border: 1px solid gray;
+    border-radius: 3px;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
@@ -84,9 +98,12 @@
 
 .days 
 .day.empty {
-    width: 31px;
+    width: 29px;
     height: 25px;
-    border: none;
+    gap: 0;
+    border: 1px solid #FFFF;
+    background-color: #FFFF;
+    cursor: default;
 }
 
 .days
@@ -171,4 +188,19 @@ button:hover {
 #btnPrevious .circle {
     position: absolute;
     left: 4px; /* Adjust to position the circle */
+}
+
+#txtDateDisplay {
+    width: 85%;
+    height: 30px;
+    border: 1px solid lightblue;
+    border-radius: 0;
+}
+
+.image-container {
+    width: 25px;
+    height: 30px;
+    border: 2px solid rgb(210, 212, 212);
+    background-size: contain;
+    margin-left: auto;
 }

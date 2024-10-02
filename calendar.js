@@ -8,44 +8,55 @@ document.addEventListener("DOMContentLoaded", function() {
 
     const monthElement = document.querySelector('.month');
     const yearElement = document.querySelector('.year');
-    const dateInput = document.querySelector('input'); // The input field
+    const dateInput = document.querySelector('input'); 
     
-    // Array of months in Japanese
     const months = ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"];
+    
+    const calendarContainer = document.querySelector('.container');
+    const calendarInput = document.querySelector('.date-input');
 
-    // Function to convert Gregorian year to Japanese era
+    // Toggle the visibility of the calendar when clicking the date input
+    calendarInput.addEventListener('click', function() {
+        if (calendarContainer.style.display === 'none') {
+            calendarContainer.style.display = 'flex';
+        } else {
+            calendarContainer.style.display = 'none';
+        }
+    });
+
+    // Function to convert to Japanese era
     function formatCalendar(year, month, day) {
         // Reiwa era (starts on May 1, 2019)
         if (year === 2019 && (month > 4 && day >= 1)) {
-            return `R1`;
+            return `R01`;
         } else if (year > 2019) {
-            return `R${year - 2019 + 1}`; 
+            return `R${(year - 2019 + 1).toString().padStart(2, '0')}`; 
         // Heisei era (January 8, 1989 - April 30, 2019)
         } else if (year === 2019 && month < 5) {
             return `H31`;
-        } else if (year === 1989 && (month > 0 && day >= 8)) {
-            return `H1`;
-        } else if (year > 1989) {
-            return `H${year - 1989 + 1}`; 
+        } else if (year === 1989 && (month === 0 && day >= 8)) {
+            return `H01`;
+        } else if (year >= 1989  && month > 1) {
+            return `H${(year - 1989 + 1).toString().padStart(2, '0')}`; 
         // Showa era (December 25, 1926 - January 7, 1989)
         } else if (year === 1926 && (month > 11 && day >= 25)) {
-            return `S1`; 
+            return `S01`; 
         } else if (year > 1926) {
-            return `S${year - 1926 + 1}`; 
+            return `S${(year - 1926 + 1).toString().padStart(2, '0')}`; 
         } else if (year === 1989 && month === 0 && day < 8) {
             return `S64`; 
         // Taisho era (July 30, 1912 - December 24, 1926)
         } else if (year === 1912 && (month > 6 && day >= 30)) {
-            return `T1`; 
+            return `T01`; 
         } else if (year > 1912) {
-            return `T${year - 1912 + 1}`; 
+            return `T${(year - 1912 + 1).toString().padStart(2, '0')}`; 
         } else if (year === 1926 && month === 11 && day < 25) {
             return `T15`; 
         // Meiji era (January 25, 1868 - July 29, 1912)
         } else if (year === 1868 && (month > 0 && day >= 25)) {
-            return `M1`; 
-        } else if (year > 1868) {
-            return `M${year - 1868 + 1}`; 
+            return `M01`; 
+        } else if (year >= 1868 && month > 1) {
+            return `M${(year - 1868 + 1).toString().padStart(2, '0')}`; 
         } else if (year === 1912 && month === 6 && day < 30) {
             return `M45`; 
         // For dates before Meiji era, just return the year
@@ -67,8 +78,8 @@ document.addEventListener("DOMContentLoaded", function() {
         // Fill in the blank days for the first week
         for (let i = 0; i < firstDayOfMonth; i++) {
             const blankDay = document.createElement('div');
-            blankDay.classList.add('day', 'empty'); // Add 'empty' class
-            calendar.appendChild(blankDay); // Append empty days
+            blankDay.classList.add('day', 'empty');
+            calendar.appendChild(blankDay); 
         }
 
         // Fill the calendar with actual days
@@ -113,7 +124,7 @@ document.addEventListener("DOMContentLoaded", function() {
         currentMonth++;
         if (currentMonth > 11) {
             currentMonth = 0; // Reset to January
-            currentYear++; // Increment the year
+            currentYear++; 
         }
         renderCalendar(currentMonth, currentYear); // Render the updated calendar
     });
@@ -122,7 +133,7 @@ document.addEventListener("DOMContentLoaded", function() {
         currentMonth--;
         if (currentMonth < 0) {
             currentMonth = 11; // Reset to December
-            currentYear--; // Decrement the year
+            currentYear--; 
         }
         renderCalendar(currentMonth, currentYear); // Render the updated calendar
     });
